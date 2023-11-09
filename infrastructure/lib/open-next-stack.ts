@@ -9,6 +9,7 @@ export class OpenNextStack extends Stack {
 
     const certificate = new Certificate(this, '56kcloudWebsiteCertificate', {
       domainName: '*.56k.cloud',
+      subjectAlternativeNames: ['www.*.56k.cloud'],
       validation: CertificateValidation.fromDns()
     })
 
