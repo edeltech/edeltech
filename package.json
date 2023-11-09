@@ -10,6 +10,7 @@
   "license": "ISC",
   "author": "56kcloud",
   "workspaces": [
+    "infrastructure",
     "apps/www",
     "apps/cms"
   ],

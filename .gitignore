@@ -118,11 +118,28 @@ out
 node_modules
 .DS_Store
 *.sublime-workspace
+data
+public/blog
+.vercel
+.vscode
+
+############################
+# Open Next
+############################
+.open-next
+
+############################
+# Next.js
+############################
+out
+.next
+node_modules
+.DS_Store
+*.sublime-workspace
 .env
 data
 public/blog
 .vercel
-.env
 .vscode
 *.dump
 storybook-check.md
