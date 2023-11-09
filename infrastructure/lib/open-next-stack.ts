@@ -18,7 +18,6 @@ export class OpenNextStack extends Stack {
         distribution: {
           customDomain: {
             domainName: 'open-next.56k.cloud',
-            alternateNames: ['www.open-next.56k.cloud'],
             certificate
           }
         }
