@@ -7,7 +7,7 @@ import {
   RunnerVersion
 } from '@cloudsnorkel/cdk-github-runners'
 import {Construct} from 'constructs'
-import {Duration, Stack, StackProps, aws_ec2 as ec2} from 'aws-cdk-lib'
+import {Duration, Stack, StackProps} from 'aws-cdk-lib'
 import {Effect, OpenIdConnectProvider, PolicyStatement, Role, WebIdentityPrincipal} from 'aws-cdk-lib/aws-iam'
 
 export class GithubRunnerStack extends Stack {
