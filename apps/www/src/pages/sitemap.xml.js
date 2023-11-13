@@ -3,7 +3,8 @@ import {strapiFetcher} from '../../configs/server'
 const staticPaths = [
   '/',
   '/blog',
-  '/about'
+  '/about',
+  '/book-a-call'
 ]
 
 function generateSiteMap(hostname, posts) {
