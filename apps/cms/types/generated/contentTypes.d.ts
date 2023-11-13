@@ -814,6 +814,40 @@ export interface ApiBlogPageBlogPage extends Schema.SingleType {
   };
 }
 
+export interface ApiBookACallPageBookACallPage extends Schema.SingleType {
+  collectionName: 'book_a_call_pages';
+  info: {
+    singularName: 'book-a-call-page';
+    pluralName: 'book-a-call-pages';
+    displayName: '04 - Book a call page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    body: Attribute.DynamicZone<
+      ['contact-sections.book-a-call-split-with-pattern']
+    >;
+    openGraph: Attribute.Component<'seo.open-graph'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::book-a-call-page.book-a-call-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::book-a-call-page.book-a-call-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCustomerCustomer extends Schema.CollectionType {
   collectionName: 'customers';
   info: {
@@ -1427,6 +1461,7 @@ declare module '@strapi/types' {
       'api::about-page.about-page': ApiAboutPageAboutPage;
       'api::article.article': ApiArticleArticle;
       'api::blog-page.blog-page': ApiBlogPageBlogPage;
+      'api::book-a-call-page.book-a-call-page': ApiBookACallPageBookACallPage;
       'api::customer.customer': ApiCustomerCustomer;
       'api::footer.footer': ApiFooterFooter;
       'api::home-page.home-page': ApiHomePageHomePage;

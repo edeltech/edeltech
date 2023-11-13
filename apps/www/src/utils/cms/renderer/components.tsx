@@ -2,6 +2,7 @@ import {
   ComponentBlueprint,
   articleContentBlueprint,
   blogThreeColumnBlueprint,
+  bookACallSplitWithPatternBlueprint,
   contactSplitWithPatternBlueprint,
   contentMarkdownBlueprint,
   contentTwoColumnBlueprint,
@@ -46,7 +47,8 @@ export const componentBlueprints: ComponentBlueprints = {
   'tag-filter': tagFilterBlueprint,
   'team-member-card': teamMemberCardBlueprint,
   'header-with-cards': headerWithCardsBlueprint,
-  'content-markdown': contentMarkdownBlueprint
+  'content-markdown': contentMarkdownBlueprint,
+  'book-a-call-split-with-pattern': bookACallSplitWithPatternBlueprint
 }
 
 export function renderComponents(components: Array<ComponentBlueprint>) {

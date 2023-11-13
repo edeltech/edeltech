@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "book_a_call_pages",
+  "info": {
+    "singularName": "book-a-call-page",
+    "pluralName": "book-a-call-pages",
+    "displayName": "04 - Book a call page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "body": {
+      "type": "dynamiczone",
+      "components": [
+        "contact-sections.book-a-call-split-with-pattern"
+      ]
+    },
+    "openGraph": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.open-graph"
+    }
+  }
+}

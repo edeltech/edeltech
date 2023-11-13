@@ -46,6 +46,18 @@ export interface CardsCardWithIcon extends Schema.Component {
   };
 }
 
+export interface ContactSectionsBookACallSplitWithPattern
+  extends Schema.Component {
+  collectionName: 'k book_a_call_split_with_patterns';
+  info: {
+    displayName: 'book-a-call-split-with-pattern';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.Text & Attribute.Required;
+  };
+}
+
 export interface ContactSectionsContactSplitWithPattern
   extends Schema.Component {
   collectionName: 'contact_split_with_patterns';
@@ -604,6 +616,7 @@ declare module '@strapi/types' {
       'benefit.benefit': BenefitBenefit;
       'blog-sections.blog-three-column': BlogSectionsBlogThreeColumn;
       'cards.card-with-icon': CardsCardWithIcon;
+      'contact-sections.book-a-call-split-with-pattern': ContactSectionsBookACallSplitWithPattern;
       'contact-sections.contact-split-with-pattern': ContactSectionsContactSplitWithPattern;
       'content-section.content-markdown': ContentSectionContentMarkdown;
       'content-section.content-two-column': ContentSectionContentTwoColumn;
