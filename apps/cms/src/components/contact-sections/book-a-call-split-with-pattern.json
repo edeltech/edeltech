@@ -1,0 +1,17 @@
+{
+  "collectionName": "k book_a_call_split_with_patterns",
+  "info": {
+    "displayName": "book-a-call-split-with-pattern"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

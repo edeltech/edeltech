@@ -2,6 +2,7 @@ import {MarkdownViewer} from '@/components/ui/molecules/mardown'
 import {z} from 'zod'
 import ArticleContentSection from '@/components/ui/molecules/article/content-section'
 import BlogThreeColumn from '@/components/ui/organisms/blog-sections/blog-three-column'
+import BookACallSplitWithPattern from '@/components/ui/organisms/contact-sections/book-a-call-split-with-pattern'
 import ContactSplitWithPattern from '@/components/ui/organisms/contact-sections/contact-split-with-pattern'
 import ContentMarkdown from '@/components/ui/organisms/content-sections/content-markdown'
 import ContentTwoColumn from '@/components/ui/organisms/content-sections/content-two-column'
@@ -103,6 +104,15 @@ export const footerBlueprint: ComponentBlueprint = {
 
 export const contactSplitWithPatternBlueprint: ComponentBlueprint = {
   component: ContactSplitWithPattern,
+  props: {
+    title: 'title',
+    subtitle: 'subtitle',
+    locations: [locationBlueprint]
+  }
+}
+
+export const bookACallSplitWithPatternBlueprint: ComponentBlueprint = {
+  component: BookACallSplitWithPattern,
   props: {
     title: 'title',
     subtitle: 'subtitle',
