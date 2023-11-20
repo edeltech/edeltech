@@ -143,3 +143,4 @@ public/blog
 .vscode
 *.dump
 storybook-check.md
+.download

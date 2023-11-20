@@ -1,10 +1,31 @@
-'use strict'
+import {
+  GetSecretValueCommand,
+  SecretsManagerClient
+} from '@aws-sdk/client-secrets-manager'
 
-/* eslint-disable no-unused-vars */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-module.exports = (config, webpack) => {
-  // Note: we provide webpack above so you should not `require` it
-  // Perform customizations to webpack config
-  // Important: return the modified config
-  return config
+const secret_name = 'Stack56KcloudStrapirds56kcl-aN5gupbAgOVy'
+
+
+(async () => {
+  const client = new SecretsManagerClient({
+  region: 'us-east-1'
+})
+  let response
+
+try {
+  response = await client.send(
+    new GetSecretValueCommand({
+      SecretId: secret_name,
+      VersionStage: 'AWSCURRENT' // VersionStage defaults to AWSCURRENT if unspecified
+    })
+  )
+} catch (error) {
+  // For a list of exceptions thrown, see
+  // https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+  throw error
 }
+
+const secret = response.SecretString
+console.log(secret)
+})()
+

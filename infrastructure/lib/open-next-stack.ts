@@ -1,16 +1,10 @@
-import {Certificate, CertificateValidation} from 'aws-cdk-lib/aws-certificatemanager'
-import {CfnOutput, Stack, StackProps} from 'aws-cdk-lib'
+import {CfnOutput, Stack} from 'aws-cdk-lib'
 import {Construct} from 'constructs'
 import {Nextjs} from 'cdk-nextjs-standalone'
-
+import {StrapiWCertificate} from '../types/stack-with-certificate-props'
 export class OpenNextStack extends Stack {
-  constructor(scope: Construct, id: string, props?: StackProps) {
+  constructor(scope: Construct, id: string, props?: StrapiWCertificate) {
     super(scope, id, props)
-
-    const certificate = new Certificate(this, '56kcloudWebsiteCertificate', {
-      domainName: '*.56k.cloud',
-      validation: CertificateValidation.fromDns()
-    })
 
     const nextjs = new Nextjs(this, '56kcloudWebsite', {
       nextjsPath: '../apps/www',
@@ -19,7 +13,7 @@ export class OpenNextStack extends Stack {
           customDomain: {
             domainName: 'open-next.56k.cloud',
             domainAlias: 'www.open-next.56k.cloud',
-            certificate
+            certificate: props?.acmStack.certificate
           }
         }
       }
