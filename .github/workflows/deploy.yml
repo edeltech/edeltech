@@ -18,8 +18,8 @@ env:
   TRANSFER_TOKEN_SALT: ${{secrets.TRANSFER_TOKEN_SALT}}
   STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE: ${{vars.STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE}}
   JWT_SECRET: ${{secrets.JWT_SECRET}}
-  AWS_ACCESS_KEY_ID: ${{vars.AWS_ACCESS_KEY_ID}}
-  AWS_ACCESS_SECRET: ${{vars.AWS_ACCESS_SECRET}}
+  AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+  AWS_ACCESS_SECRET: ${{secrets.AWS_ACCESS_SECRET}}
   AWS_BUCKET: ${{vars.AWS_BUCKET}}
   DATABASE_CLIENT: ${{secrets.DATABASE_CLIENT}}
   DATABASE_HOST: ${{secrets.DATABASE_HOST}}
@@ -90,7 +90,7 @@ jobs:
         run: |
             npm run build
       
-      - name: Zip CMS
+      - name: Zip cms
         run: |
             zip -r strapi.zip ./* -x node_modules/\* apps/www/\* infrastructure/\*
           
@@ -120,7 +120,7 @@ jobs:
           state: 'failure'
           deployment-id: ${{steps.deployment.outputs.deployment_id}}
   # deploy-www:
-  #   needs: deploy-cms
+  #   # needs: deploy-cms
   #   name: Deploy WWW
   #   runs-on: [self-hosted, '56kcloud-website-codebuild']
   #   environment: ${{github.ref == 'refs/heads/main' && 'prod' || 'dev'}}
