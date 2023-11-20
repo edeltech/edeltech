@@ -88,7 +88,7 @@ jobs:
       
       - name: Zip CMS
         run: |
-          zip strapi.zip ./* -x node_modules/ -x apps/www/ -x infrastructure/ -r
+            zip -r strapi.zip ./* -x node_modules/\* apps/www/\* infrastructure/\*
           
       # - name: Configure AWS Credentials
       #   uses: aws-actions/configure-aws-credentials@v2
