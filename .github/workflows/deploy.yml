@@ -64,7 +64,7 @@ jobs:
         run: |
           npm install
       
-      - name: Add .env file in www
+      - name: Add .env file in cms
         run: |
           cd apps/cms
           touch .env
@@ -85,6 +85,10 @@ jobs:
           echo DATABASE_USERNAME=$DATABASE_USERNAME >> .env
           echo DATABASE_PASSWORD=$DATABASE_PASSWORD >> .env
           cat .env
+
+      - name: Build cms
+        run: |
+            npm run build
       
       - name: Zip CMS
         run: |
@@ -116,6 +120,7 @@ jobs:
           state: 'failure'
           deployment-id: ${{steps.deployment.outputs.deployment_id}}
   # deploy-www:
+  #   needs: deploy-cms
   #   name: Deploy WWW
   #   runs-on: [self-hosted, '56kcloud-website-codebuild']
   #   environment: ${{github.ref == 'refs/heads/main' && 'prod' || 'dev'}}
@@ -193,7 +198,7 @@ jobs:
 
   #     - name: Deploying
   #       run: |
-  #         cd infrastructure && npm i && npx cdk deploy Stack56KcloudOpenNext --require-approval never
+  #         export DEPLOY_WWW_ONLY=true && cd infrastructure && npm i && npx cdk deploy Stack56KcloudOpenNext --require-approval never
 
   #     - name: Update deployment status (success)
   #       if: success()
