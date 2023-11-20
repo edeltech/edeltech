@@ -9,9 +9,18 @@ import {StrapiStack} from '../lib/strapi-stack'
 const app = new cdk.App()
 
 // const acmStack = new AcmStack(app, 'Stack56KcloudAcm')
-const acmStack = new AcmStack(app, 'Stack56KcloudAcm')
+const acmStack = new AcmStack(app, 'Stack56KcloudAcm', {
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION
+  }
+})
 
 new StrapiStack(app, 'Stack56KcloudStrapi', {
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION
+  },
   acmStack
 })
 
@@ -23,4 +32,9 @@ new OpenNextStack(app, 'Stack56KcloudOpenNext', {
   acmStack
 })
 
-new GithubRunnerStack(app, 'GithubRunnerStack')
+new GithubRunnerStack(app, 'GithubRunnerStack', {
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION
+  }
+})
