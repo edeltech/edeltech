@@ -11,11 +11,15 @@ const app = new cdk.App()
 // const acmStack = new AcmStack(app, 'Stack56KcloudAcm')
 const acmStack = new AcmStack(app, 'Stack56KcloudAcm')
 
-// new StrapiStack(app, 'Stack56KcloudStrapi', {
-//   acmStack
-// })
+new StrapiStack(app, 'Stack56KcloudStrapi', {
+  acmStack
+})
 
 new OpenNextStack(app, 'Stack56KcloudOpenNext', {
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION
+  },
   acmStack
 })
 
