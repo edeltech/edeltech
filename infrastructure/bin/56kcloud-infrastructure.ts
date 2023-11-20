@@ -11,9 +11,9 @@ const app = new cdk.App()
 // const acmStack = new AcmStack(app, 'Stack56KcloudAcm')
 const acmStack = new AcmStack(app, 'Stack56KcloudAcm')
 
-// new StrapiStack(app, 'Stack56KcloudStrapi', {
-//   acmStack
-// })
+new StrapiStack(app, 'Stack56KcloudStrapi', {
+  acmStack
+})
 
 new OpenNextStack(app, 'Stack56KcloudOpenNext', {
   env: {
