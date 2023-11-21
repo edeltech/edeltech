@@ -173,7 +173,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::${{vars.CDK_DEFAULT_ACCOUNT}}:role/56kcloud-website-role
+          role-to-assume: arn:aws:iam::${{vars.CDK_DEFAULT_ACCOUNT}}:role/github-role
           aws-region: ${{vars.CDK_DEFAULT_REGION}}
 
       - name: Deploying
