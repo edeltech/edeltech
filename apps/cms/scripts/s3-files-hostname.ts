@@ -12,13 +12,14 @@ const pool = new Pool({
     : false
 })
 
-export const sampleQuery = async (query: string): Promise<QueryResult> => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const sampleQuery = async (query: any): Promise<QueryResult> => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result = await pool.query(query) as Record<string, any>
     return result.rows
   } catch (error) {
-    console.error('Error executing query', error)
+    console.error('Error executing query', error.message)
   }
 }
 
@@ -44,9 +45,27 @@ async function updateFilesHostname() {
   }
 }
 
+async function updateArticlesImagesHostname(hostname='56k-strapi.s3.eu-central-1.amazonaws.com') {
+  const articles = await sampleQuery('SELECT * FROM articles;')
+  if (Array.isArray(articles) && articles.length > 0) {
+    await Promise.all(articles.map(async (article) => {
+      const newHostname = `${process.env.AWS_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com`
+      const content = article.content.replaceAll(hostname, newHostname)
+      await sampleQuery({
+        text: 'UPDATE articles SET content = $1 WHERE id = $2;',
+        values: [content, article.id]
+      })
+    }))
+    console.log(`${articles.length} hostnames have been updated! 🎉`)
+  } else {
+    console.log('No articles found! 😢')
+  }
+}
+
 (async () => {
   const client = await pool.connect()
   await updateFilesHostname()
+  await updateArticlesImagesHostname()
   await client.release()
   await pool.end()
 })()
