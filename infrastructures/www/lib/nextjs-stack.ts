@@ -8,8 +8,8 @@ export class NextjsStack extends Stack {
 
     new Nextjs(this, 'Nextjs', {
       nextjsPath: '../../apps/www',  
-      domainName: 'www.open-next.56k.cloud',
-      domainAlias: 'open-next.56k.cloud'
+      domainName: 'open-next.56k.cloud',
+      domainAlias: 'www.open-next.56k.cloud'
     })
 
   }
