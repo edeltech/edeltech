@@ -1,6 +1,3 @@
-apps
-  cms
-  www
-infrastructures
-  cms
-  www
+packages:
+  - 'apps/*'
+  - 'infrastructures/*'

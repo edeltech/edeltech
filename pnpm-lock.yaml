@@ -384,7 +384,7 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
-      '@jridgewell/trace-mapping': 0.3.9
+      '@jridgewell/trace-mapping': 0.3.20
 
   /@aw-web-design/x-default-browser@1.4.126:
     resolution: {integrity: sha512-Xk1sIhyNC/esHGGVjL/niHLowM0csl/kFO5uawBy4IrWwy0o1G8LGt3jP6nmWGz+USxeeqbihAmp/oVZju6wug==}
@@ -3476,7 +3476,7 @@ packages:
     dependencies:
       '@jridgewell/set-array': 1.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
-      '@jridgewell/trace-mapping': 0.3.9
+      '@jridgewell/trace-mapping': 0.3.20
 
   /@jridgewell/resolve-uri@3.1.1:
     resolution: {integrity: sha512-dSYZh7HhCDtCKm4QakX0xFpsRDqjjtZf/kjI/v3T3Nwt5r8/qz/M19F9ySyOqU94SXBmeG9ttTul+YnR4LOxFA==}
@@ -9414,7 +9414,6 @@ packages:
     dependencies:
       aws-cdk-lib: 2.104.0(constructs@10.3.0)
       constructs: 10.3.0
-      esbuild: 0.19.2
     dev: false
     bundledDependencies:
       - esbuild
@@ -9428,7 +9427,6 @@ packages:
     dependencies:
       aws-cdk-lib: 2.104.0(constructs@10.3.0)
       constructs: 10.3.0
-      esbuild: 0.19.2
     dev: true
     bundledDependencies:
       - esbuild
