@@ -13,6 +13,7 @@
     "@56k.cloud/cdk-construct": "0.1.0-canary",
     "@cloudsnorkel/cdk-github-runners": "^0.11.5",
     "aws-cdk-lib": "2.104.0",
+    "cdk": "2.110.0",
     "constructs": "^10.3.0",
     "source-map-support": "^0.5.21"
   },
