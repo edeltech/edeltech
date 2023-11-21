@@ -90,6 +90,9 @@ importers:
       '@strapi/typescript-utils':
         specifier: ^4.15.4
         version: 4.15.4
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
 
   apps/www:
     dependencies:
@@ -269,8 +272,8 @@ importers:
   infrastructures/cms:
     dependencies:
       '@56k.cloud/cdk-construct':
-        specifier: 0.1.0-canary.2
-        version: 0.1.0-canary.2(aws-cdk-lib@2.104.0)(constructs@10.3.0)
+        specifier: 0.1.0-canary.3
+        version: 0.1.0-canary.3(aws-cdk-lib@2.104.0)(constructs@10.3.0)
       '@cloudsnorkel/cdk-github-runners':
         specifier: ^0.11.5
         version: 0.11.6(aws-cdk-lib@2.104.0)(constructs@10.3.0)
@@ -315,8 +318,8 @@ importers:
   infrastructures/www:
     dependencies:
       '@56k.cloud/cdk-construct':
-        specifier: 0.1.0-canary.2
-        version: 0.1.0-canary.2(aws-cdk-lib@2.104.0)(constructs@10.3.0)
+        specifier: 0.1.0-canary.3
+        version: 0.1.0-canary.3(aws-cdk-lib@2.104.0)(constructs@10.3.0)
       '@cloudsnorkel/cdk-github-runners':
         specifier: ^0.11.5
         version: 0.11.6(aws-cdk-lib@2.104.0)(constructs@10.3.0)
@@ -363,8 +366,8 @@ importers:
 
 packages:
 
-  /@56k.cloud/cdk-construct@0.1.0-canary.2(aws-cdk-lib@2.104.0)(constructs@10.3.0):
-    resolution: {integrity: sha512-3MOk4lWhH0ym1m9hWESq2PNy89CK71gjAsz51HWZFrsPy/nq/e5E5+PDgAH7DWvFuH1Fqb692Y+O7vcFZbD3iA==}
+  /@56k.cloud/cdk-construct@0.1.0-canary.3(aws-cdk-lib@2.104.0)(constructs@10.3.0):
+    resolution: {integrity: sha512-091+AMPyVFLBsCWu1Rll7mWQiUyzhs7rjR39GRUT5i9YMEbk3+JV9Zpt8RxEojoHN6SyRJ5KL52XXok6raz2Ww==}
     engines: {node: '18'}
     peerDependencies:
       aws-cdk-lib: 2.104.0
@@ -10178,6 +10181,7 @@ packages:
     dependencies:
       aws-cdk-lib: 2.104.0(constructs@10.3.0)
       constructs: 10.3.0
+      esbuild: 0.19.2
     dev: false
     bundledDependencies:
       - esbuild
