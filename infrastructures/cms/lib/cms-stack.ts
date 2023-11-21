@@ -6,12 +6,12 @@ export class CMSStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props)
 
-    const strapi = new Strapi(this, 'Strapi', {
+    new Strapi(this, 'Strapi', {
       appName: '56kcloud-cms',
       domainName: 'cms-aws.56k.cloud',
-      zipPath: `${__dirname}/../../../strapi.zip`
+      zipPath: `${__dirname}/../../../strapi.zip`,
+      environment: 'prod'
     })
-    strapi.deployElbApp()
 
   }
 }

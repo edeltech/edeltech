@@ -144,3 +144,4 @@ public/blog
 *.dump
 storybook-check.md
 .download
+.env.copy

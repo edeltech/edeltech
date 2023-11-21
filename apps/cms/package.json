@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "strapi build",
-    "dev": "strapi develop --debug ",
+    "dev": "strapi develop",
     "lint": "eslint . --ext js,jsx,ts,tsx --max-warnings=0 --config .eslintrc.json --no-eslintrc --fix",
     "start": "strapi start",
     "strapi": "strapi"

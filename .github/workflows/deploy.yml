@@ -16,113 +16,13 @@ env:
   API_TOKEN_SALT: ${{secrets.API_TOKEN_SALT}}
   ADMIN_JWT_SECRET: ${{secrets.ADMIN_JWT_SECRET}}
   TRANSFER_TOKEN_SALT: ${{secrets.TRANSFER_TOKEN_SALT}}
-  STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE: ${{vars.STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE}}
   JWT_SECRET: ${{secrets.JWT_SECRET}}
-  AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
-  AWS_ACCESS_SECRET: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-  AWS_BUCKET: ${{vars.AWS_BUCKET}}
-  DATABASE_CLIENT: ${{secrets.DATABASE_CLIENT}}
-  DATABASE_HOST: ${{secrets.DATABASE_HOST}}
-  DATABASE_PORT: ${{secrets.DATABASE_PORT}}
-  DATABASE_NAME: ${{secrets.DATABASE_NAME}}
-  DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
-  DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+  STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE: ${{vars.STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE}}
 
 jobs:
-  # deploy-cms:
-  #   name: Deploy CMS
-  #   runs-on: [self-hosted, '56kcloud-website-codebuild']
-  #   environment: ${{github.ref == 'refs/heads/main' && 'prod' || 'dev'}}
-  #   permissions:
-  #     id-token: write
-  #     contents: read
-  #     deployments: write
-  #   steps:
-
-  #     - name: Checkout the repository
-  #       uses: actions/checkout@v4
-
-  #     - name: Get the branch name
-  #       id: get_branch
-  #       run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
-  #       shell: bash
-
-  #     - uses: chrnorm/deployment-action@v2
-  #       name: Create GitHub deployment for ${{github.job.environment.name}}
-  #       id: deployment
-  #       with:
-  #         token: '${{github.token}}'
-  #         environment: ${{github.job.environment.name}}
-  #         ref: ${{steps.get_branch.outputs.branch}}
-
-  #     - name: Set up Node.js
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: '18.x'
-
-  #     - name: Install dependencies
-  #       run: |
-  #         npm install
-      
-  #     - name: Add .env file in cms
-  #       run: |
-  #         cd apps/cms
-  #         touch .env
-  #         echo APP_KEYS=$APP_KEYS >> .env
-  #         echo API_TOKEN_SALT=$API_TOKEN_SALT >> .env
-  #         echo ADMIN_JWT_SECRET=$ADMIN_JWT_SECRET >> .env
-  #         echo TRANSFER_TOKEN_SALT=$TRANSFER_TOKEN_SALT >> .env
-  #         echo STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=$STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE >> .env
-  #         echo JWT_SECRET=$JWT_SECRET >> .env
-  #         echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID >> .env
-  #         echo AWS_ACCESS_SECRET=$AWS_ACCESS_SECRET >> .env
-  #         echo AWS_REGION=$CDK_DEFAULT_REGION >> .env
-  #         echo AWS_BUCKET=$AWS_BUCKET >> .env
-  #         echo DATABASE_CLIENT=$DATABASE_CLIENT >> .env
-  #         echo DATABASE_HOST=$DATABASE_HOST >> .env
-  #         echo DATABASE_PORT=$DATABASE_PORT >> .env
-  #         echo DATABASE_NAME=$DATABASE_NAME >> .env
-  #         echo DATABASE_USERNAME=$DATABASE_USERNAME >> .env
-  #         echo DATABASE_PASSWORD=$DATABASE_PASSWORD >> .env
-  #         cat .env
-
-  #     - name: Build cms
-  #       run: |
-  #           npm run build
-      
-  #     - name: Zip cms
-  #       run: |
-  #           zip -r strapi.zip ./* -x node_modules/\* apps/www/\* infrastructures/\*
-          
-  #     - name: Configure AWS Credentials
-  #       uses: aws-actions/configure-aws-credentials@v2
-  #       with:
-  #         role-to-assume: arn:aws:iam::${{vars.CDK_DEFAULT_ACCOUNT}}:role/56kcloud-website-role
-  #         aws-region: ${{vars.CDK_DEFAULT_REGION}}
-
-  #     - name: Deploying
-  #       run: |
-  #         export DEPLOY_CMS_ONLY=true && cd infrastructure && npm i && npx cdk deploy Stack56KcloudAcm Stack56KcloudStrapi --require-approval never
-
-  #     - name: Update deployment status (success)
-  #       if: success()
-  #       uses: chrnorm/deployment-status@v2
-  #       with:
-  #         token: '${{github.token}}'
-  #         state: 'success'
-  #         deployment-id: ${{steps.deployment.outputs.deployment_id}}
-
-  #     - name: Update deployment status (failure)
-  #       if: failure()
-  #       uses: chrnorm/deployment-status@v2
-  #       with:
-  #         token: '${{github.token}}'
-  #         state: 'failure'
-  #         deployment-id: ${{steps.deployment.outputs.deployment_id}}
-  deploy-www:
-    # needs: deploy-cms
-    name: Deploy WWW
-    runs-on: [self-hosted, 'codebuild']
+  deploy-cms:
+    name: Deploy CMS
+    runs-on: 'ubuntu-latest'
     environment: ${{github.ref == 'refs/heads/main' && 'prod' || 'dev'}}
     permissions:
       id-token: write
@@ -155,21 +55,26 @@ jobs:
         name: Install pnpm
         with:
           version: 8
-          run_install: false
-
-      - name: Install dependencies
-        run: |
-          pnpm install
+          run_install: true
       
-      - name: Add .env file in www
+      - name: Add .env file in cms
         run: |
-          cd apps/www
+          cd apps/cms
           touch .env
-          echo NEXT_PUBLIC_HUBSPOT_API=$NEXT_PUBLIC_HUBSPOT_API >> .env
-          echo STRAPI_API_URL=$STRAPI_API_URL >> .env
-          echo STRAPI_API_TOKEN=$STRAPI_API_TOKEN >> .env
+          echo APP_KEYS=$APP_KEYS >> .env
+          echo API_TOKEN_SALT=$API_TOKEN_SALT >> .env
+          echo ADMIN_JWT_SECRET=$ADMIN_JWT_SECRET >> .env
+          echo TRANSFER_TOKEN_SALT=$TRANSFER_TOKEN_SALT >> .env
+          echo STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=$STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE >> .env
+          echo JWT_SECRET=$JWT_SECRET >> .env
           cat .env
 
+      - name: Build cms
+        run: npm run build
+      
+      - name: Zip cms
+        run: zip -r strapi.zip ./* -x node_modules/\* apps/cms/node_modules\* apps/www/\* infrastructures/\*
+          
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -177,8 +82,7 @@ jobs:
           aws-region: ${{vars.CDK_DEFAULT_REGION}}
 
       - name: Deploying
-        run: |
-          cd infrastructures/www && npx cdk deploy NextjsStack --require-approval never
+        run: cd infrastructures/cms && npx cdk deploy StrapiStack --require-approval never
 
       - name: Update deployment status (success)
         if: success()
@@ -195,3 +99,79 @@ jobs:
           token: '${{github.token}}'
           state: 'failure'
           deployment-id: ${{steps.deployment.outputs.deployment_id}}
+  # deploy-www:
+  #   # needs: deploy-cms
+  #   name: Deploy WWW
+  #   runs-on: [self-hosted, 'codebuild']
+  #   environment: ${{github.ref == 'refs/heads/main' && 'prod' || 'dev'}}
+  #   permissions:
+  #     id-token: write
+  #     contents: read
+  #     deployments: write
+  #   steps:
+
+  #     - name: Checkout the repository
+  #       uses: actions/checkout@v4
+
+  #     - name: Get the branch name
+  #       id: get_branch
+  #       run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+  #       shell: bash
+
+  #     - uses: chrnorm/deployment-action@v2
+  #       name: Create GitHub deployment for ${{github.job.environment.name}}
+  #       id: deployment
+  #       with:
+  #         token: '${{github.token}}'
+  #         environment: ${{github.job.environment.name}}
+  #         ref: ${{steps.get_branch.outputs.branch}}
+
+  #     - name: Set up Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18.x'
+
+  #     - uses: pnpm/action-setup@v2
+  #       name: Install pnpm
+  #       with:
+  #         version: 8
+  #         run_install: false
+
+  #     - name: Install dependencies
+  #       run: |
+  #         pnpm install
+      
+  #     - name: Add .env file in www
+  #       run: |
+  #         cd apps/www
+  #         touch .env
+  #         echo NEXT_PUBLIC_HUBSPOT_API=$NEXT_PUBLIC_HUBSPOT_API >> .env
+  #         echo STRAPI_API_URL=$STRAPI_API_URL >> .env
+  #         echo STRAPI_API_TOKEN=$STRAPI_API_TOKEN >> .env
+  #         cat .env
+
+  #     - name: Configure AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v2
+  #       with:
+  #         role-to-assume: arn:aws:iam::${{vars.CDK_DEFAULT_ACCOUNT}}:role/github-role
+  #         aws-region: ${{vars.CDK_DEFAULT_REGION}}
+
+  #     - name: Deploying
+  #       run: |
+  #         cd infrastructures/www && npx cdk deploy NextjsStack --require-approval never
+
+  #     - name: Update deployment status (success)
+  #       if: success()
+  #       uses: chrnorm/deployment-status@v2
+  #       with:
+  #         token: '${{github.token}}'
+  #         state: 'success'
+  #         deployment-id: ${{steps.deployment.outputs.deployment_id}}
+
+  #     - name: Update deployment status (failure)
+  #       if: failure()
+  #       uses: chrnorm/deployment-status@v2
+  #       with:
+  #         token: '${{github.token}}'
+  #         state: 'failure'
+  #         deployment-id: ${{steps.deployment.outputs.deployment_id}}
