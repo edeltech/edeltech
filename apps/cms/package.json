@@ -8,8 +8,8 @@
     "name": "56kcloud"
   },
   "scripts": {
-    "build": "cd src/plugins/revalidate-website && npm run build && cd ../../../ && strapi build",
-    "dev": "strapi develop",
+    "build": "strapi build",
+    "dev": "strapi develop --debug ",
     "lint": "eslint . --ext js,jsx,ts,tsx --max-warnings=0 --config .eslintrc.json --no-eslintrc --fix",
     "start": "strapi start",
     "strapi": "strapi"
@@ -30,13 +30,10 @@
     "strapi-plugin-multi-select": "^1.2.3",
     "strapi-plugin-placeholder": "^4.4.0",
     "strapi-plugin-populate-deep": "^3.0.1",
-    "strapi-plugin-preview-button": "^2.2.1",
-    "strapi-plugin-slugify": "^2.3.8",
-    "strapi-plugin-translate": "^1.2.4",
-    "strapi-provider-translate-deepl": "^1.1.12",
-    "styled-components": "5.3.3"
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@strapi/typescript-utils": "^4.15.4",
     "@types/pg": "^8.10.9",
     "dotenv": "^16.3.1",
     "tsx": "^x"

@@ -1,3 +1,6 @@
-packages:
-  - 'apps/*'
-  - 'apps/cms/src/plugins/*'
+apps
+  cms
+  www
+infrastructures
+  cms
+  www
