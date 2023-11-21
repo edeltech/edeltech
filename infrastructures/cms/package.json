@@ -1,8 +1,8 @@
 {
-  "name": "56kcloud-infrastructure",
+  "name": "56kcloud-cms-infrastructure",
   "version": "0.1.0",
   "bin": {
-    "56kcloud-infrastructure": "bin/56kcloud-infrastructure.js"
+    "infrastructure": "bin/infrastructure.js"
   },
   "scripts": {
     "build": "tsc",
@@ -10,6 +10,7 @@
     "watch": "tsc -w"
   },
   "dependencies": {
+    "@56k.cloud/cdk-construct": "../../../56kcloud-cdk-construct/dist",
     "@cloudsnorkel/cdk-github-runners": "^0.11.5",
     "aws-cdk-lib": "2.104.0",
     "constructs": "^10.3.0",

@@ -26,14 +26,14 @@ if [[ "$response" == "yes" ]]; then
   echo -e "\n💾 Dumping database to '${filename}' (might take a few minutes)"
   pg_dump -Fc -v ${REMOTE_DB_URL} -f ${filename}
 
-  echo -e "\n❇️ Creating database \"${DATABASE_NAME}\""
- 	psql -d postgres -c "CREATE DATABASE \"${DATABASE_NAME}\""
+  # echo -e "\n❇️ Creating database \"${DATABASE_NAME}\""
+ 	# psql -d postgres -c "CREATE DATABASE \"${DATABASE_NAME}\""
 
- 	echo -e "\n🔁 Restoring database '${DATABASE_NAME}'"
- 	pg_restore --clean --verbose --no-acl --no-owner -d ${DATABASE_NAME} ${filename}
+ 	# echo -e "\n🔁 Restoring database '${DATABASE_NAME}'"
+ 	# pg_restore --clean --verbose --no-acl --no-owner -d ${DATABASE_NAME} ${filename}
 
- 	echo -e "\n✅ Done. Cleaning up."
-	rm ${filename}
+ 	# echo -e "\n✅ Done. Cleaning up."
+	# rm ${filename}
 else
   echo "Ok, bye."
 fi
