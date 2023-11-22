@@ -10,9 +10,9 @@
     "watch": "tsc -w"
   },
   "dependencies": {
-    "@56k.cloud/cdk-construct": "0.1.0-canary.3",
+    "@56k.cloud/cdk-construct": "../../../56kcloud-cdk-construct/dist",
     "@cloudsnorkel/cdk-github-runners": "^0.11.5",
-    "aws-cdk-lib": "2.104.0",
+    "aws-cdk-lib": "2.110.1",
     "cdk": "2.110.0",
     "constructs": "^10.3.0",
     "open-next": "2.3.2",
