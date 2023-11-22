@@ -272,14 +272,14 @@ importers:
   infrastructures/cms:
     dependencies:
       '@56k.cloud/cdk-construct':
-        specifier: 0.1.0-canary.4
-        version: 0.1.0-canary.4(aws-cdk-lib@2.110.1)(constructs@10.3.0)
+        specifier: 0.1.0-canary.5
+        version: 0.1.0-canary.5(aws-cdk-lib@2.110.0)(constructs@10.3.0)
       '@cloudsnorkel/cdk-github-runners':
         specifier: ^0.11.5
-        version: 0.11.6(aws-cdk-lib@2.110.1)(constructs@10.3.0)
+        version: 0.11.6(aws-cdk-lib@2.110.0)(constructs@10.3.0)
       aws-cdk-lib:
-        specifier: 2.110.1
-        version: 2.110.1(constructs@10.3.0)
+        specifier: 2.110.0
+        version: 2.110.0(constructs@10.3.0)
       cdk:
         specifier: 2.110.0
         version: 2.110.0
@@ -318,14 +318,14 @@ importers:
   infrastructures/www:
     dependencies:
       '@56k.cloud/cdk-construct':
-        specifier: 0.1.0-canary.4
-        version: 0.1.0-canary.4(aws-cdk-lib@2.110.1)(constructs@10.3.0)
+        specifier: 0.1.0-canary.5
+        version: 0.1.0-canary.5(aws-cdk-lib@2.110.0)(constructs@10.3.0)
       '@cloudsnorkel/cdk-github-runners':
         specifier: ^0.11.5
-        version: 0.11.6(aws-cdk-lib@2.110.1)(constructs@10.3.0)
+        version: 0.11.6(aws-cdk-lib@2.110.0)(constructs@10.3.0)
       aws-cdk-lib:
-        specifier: 2.110.1
-        version: 2.110.1(constructs@10.3.0)
+        specifier: 2.110.0
+        version: 2.110.0(constructs@10.3.0)
       cdk:
         specifier: 2.110.0
         version: 2.110.0
@@ -366,16 +366,16 @@ importers:
 
 packages:
 
-  /@56k.cloud/cdk-construct@0.1.0-canary.4(aws-cdk-lib@2.110.1)(constructs@10.3.0):
-    resolution: {integrity: sha512-qKKKqfeqcjA4I2XybCwImXkNlX2KaHoX1k7Z3p+xz6fNhMk1Op6Q8HOw7Ps4e+bzQp3QkzPyMNsGPm24SBv/dg==}
+  /@56k.cloud/cdk-construct@0.1.0-canary.5(aws-cdk-lib@2.110.0)(constructs@10.3.0):
+    resolution: {integrity: sha512-leMF0ahKqtgu0naM8zjnTN/I3JTBovSpqDxczPHWJaVQDLJJaxYIWjYzoXTkxAmUibtqhNeRW3J4hkRnEoQl5Q==}
     engines: {node: '18'}
     peerDependencies:
-      aws-cdk-lib: 2.110.1
+      aws-cdk-lib: 2.110.0
       constructs: ^10.0.0
     dependencies:
-      '@cloudsnorkel/cdk-github-runners': 0.11.6(aws-cdk-lib@2.110.1)(constructs@10.3.0)
-      aws-cdk-lib: 2.110.1(constructs@10.3.0)
-      cdk-nextjs-standalone: 4.0.0-beta.9(aws-cdk-lib@2.110.1)(constructs@10.3.0)
+      '@cloudsnorkel/cdk-github-runners': 0.11.6(aws-cdk-lib@2.110.0)(constructs@10.3.0)
+      aws-cdk-lib: 2.110.0(constructs@10.3.0)
+      cdk-nextjs-standalone: 4.0.0-beta.9(aws-cdk-lib@2.110.0)(constructs@10.3.0)
       constructs: 10.3.0
     dev: false
 
@@ -3086,13 +3086,13 @@ packages:
       '@ucast/mongo2js': 1.3.4
     dev: false
 
-  /@cloudsnorkel/cdk-github-runners@0.11.6(aws-cdk-lib@2.110.1)(constructs@10.3.0):
+  /@cloudsnorkel/cdk-github-runners@0.11.6(aws-cdk-lib@2.110.0)(constructs@10.3.0):
     resolution: {integrity: sha512-N88rPHbnQtAmOFQjSO6fpbQqXK16gjcNFVNB8kh/2XzamfM63Ea9T8k2dzis4ivQbHFGVOe+LnjcQjRldt6WpQ==}
     peerDependencies:
       aws-cdk-lib: ^2.77.0
       constructs: ^10.0.5
     dependencies:
-      aws-cdk-lib: 2.110.1(constructs@10.3.0)
+      aws-cdk-lib: 2.110.0(constructs@10.3.0)
       constructs: 10.3.0
     dev: false
 
@@ -9505,8 +9505,8 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
 
-  /aws-cdk-lib@2.110.1(constructs@10.3.0):
-    resolution: {integrity: sha512-Z+42Jc/KSKFdBOpEv4LK9tz6kQUdVvUBquIYhLajam3aGblkonM0/FgexvAqy8iGwUaVEIpVyBTZUP2/VUMalg==}
+  /aws-cdk-lib@2.110.0(constructs@10.3.0):
+    resolution: {integrity: sha512-4IxjdtaoGjQPqtFyYXG6kOs9t/UTAh06tlGyCPpvhTZNoKNFUkku3H6MArlazpiKtm+dThdF+p5lQLB/kIu/qw==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       constructs: ^10.0.0
@@ -10172,14 +10172,14 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /cdk-nextjs-standalone@4.0.0-beta.9(aws-cdk-lib@2.110.1)(constructs@10.3.0):
+  /cdk-nextjs-standalone@4.0.0-beta.9(aws-cdk-lib@2.110.0)(constructs@10.3.0):
     resolution: {integrity: sha512-bC1h6eLPQcKvmjtIiiig36UMlZqeb5z70DmwCX5U+2ZIRIx6SUnFE7d3OxV+Cy+FmAlt1zOOMFTYNv9Ymud0mQ==}
     engines: {node: '>= 18.0.0'}
     peerDependencies:
       aws-cdk-lib: ^2.99.1
       constructs: ^10.0.5
     dependencies:
-      aws-cdk-lib: 2.110.1(constructs@10.3.0)
+      aws-cdk-lib: 2.110.0(constructs@10.3.0)
       constructs: 10.3.0
       esbuild: 0.19.2
     dev: false
