@@ -3,7 +3,7 @@ import {Construct} from 'constructs'
 import {Stack, StackProps} from 'aws-cdk-lib'
 import {Strapi} from '@56k.cloud/cdk-construct'
 
-export class CMSStack extends Stack {
+export class CmsStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props)
 
