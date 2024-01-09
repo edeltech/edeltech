@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 import 'source-map-support/register'
 import * as cdk from 'aws-cdk-lib'
-import {CMSStack} from '../lib/cms-stack'
-
+import {CmsStack} from '../lib/cms-stack'
 
 const app = new cdk.App()
 
-new CMSStack(app, 'StrapiStack', {
+new CmsStack(app, 'StrapiStack', {
   env: {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION
