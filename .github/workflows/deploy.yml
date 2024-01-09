@@ -57,7 +57,7 @@ jobs:
           version: 8
       
       - name: Install dependencies
-        run: pnpm install -w cms cms/src/plugins/revalidate-website
+        run: pnpm install -w apps/cms apps/cms/src/plugins/revalidate-website
       
       - name: Add .env file in cms
         run: |
