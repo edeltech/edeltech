@@ -9,7 +9,7 @@ export class CmsStack extends Stack {
 
     new Strapi(this, 'Strapi', {
       appName: '56kcloud-cms',
-      domainName: 'cms-aws.56k.cloud',
+      // domainName: 'cms-aws.56k.cloud',
       zipPath: `${__dirname}/../../../strapi.zip`,
       environment: 'prod',
       certificateValidation: CertificateValidation.fromDns()
