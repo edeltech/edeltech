@@ -8,7 +8,7 @@ export class CmsStack extends Stack {
     super(scope, id, props)
 
     new Strapi(this, 'Strapi', {
-      appName: '56kcloudCms',
+      appName: '56kcloud-cms',
       domainName: 'cms-aws.56k.cloud',
       zipPath: `${__dirname}/../../../strapi.zip`,
       environment: 'prod',
