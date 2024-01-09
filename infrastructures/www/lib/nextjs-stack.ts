@@ -1,6 +1,6 @@
 import {CertificateValidation} from 'aws-cdk-lib/aws-certificatemanager'
 import {Construct} from 'constructs'
-import {Nextjs} from '@56k.cloud/cdk-construct'
+import {Nextjs} from '@56k.cloud/cdk-constructs'
 import {Stack, StackProps} from 'aws-cdk-lib'
 
 export class NextjsStack extends Stack {
@@ -8,6 +8,7 @@ export class NextjsStack extends Stack {
     super(scope, id, props)
 
     new Nextjs(this, 'Nextjs', {
+      appName: '56kcloudNextjs',
       nextjsPath: '../../apps/www',
       customDomain: {
         domainName: 'www.open-next.56k.cloud',

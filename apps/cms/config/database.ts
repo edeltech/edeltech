@@ -5,11 +5,11 @@ export default ({env}) => {
   const databaseConfig = env('DATABASE_URL')
     ? parse(env('DATABASE_URL'))
     : {
-        host: env('DATABASE_HOST', '127.0.0.1'),
-        port: env.int('DATABASE_PORT', 5432),
-        database: env('DATABASE_NAME', 'strapi'),
-        user: env('DATABASE_USERNAME', 'strapi'),
-        password: env('DATABASE_PASSWORD', 'strapi')
+        host: env('RDS_HOSTNAME', '127.0.0.1'),
+        port: env.int('RDS_PORT', 5432),
+        database: env('RDS_DB_NAME', 'strapi'),
+        user: env('RDS_USERNAME', 'strapi'),
+        password: env('RDS_PASSWORD', 'strapi')
       }
 
   return {

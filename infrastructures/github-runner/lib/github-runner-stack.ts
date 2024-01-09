@@ -1,5 +1,5 @@
 import {Construct} from 'constructs'
-import {GithubRunner} from '@56k.cloud/cdk-construct'
+import {GithubRunner} from '@56k.cloud/cdk-constructs'
 import {Stack, StackProps} from 'aws-cdk-lib'
 
 export class GithubRunnerStack extends Stack {

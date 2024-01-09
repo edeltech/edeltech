@@ -55,7 +55,9 @@ jobs:
         name: Install pnpm
         with:
           version: 8
-          run_install: true
+      
+      - name: Install dependencies
+        run: pnpm install -w cms
       
       - name: Add .env file in cms
         run: |
@@ -99,79 +101,79 @@ jobs:
           token: '${{github.token}}'
           state: 'failure'
           deployment-id: ${{steps.deployment.outputs.deployment_id}}
-  deploy-www:
-    needs: deploy-cms
-    name: Deploy WWW
-    runs-on: [self-hosted, 'codebuild']
-    environment: ${{github.ref == 'refs/heads/main' && 'prod' || 'dev'}}
-    permissions:
-      id-token: write
-      contents: read
-      deployments: write
-    steps:
+  # deploy-www:
+  #   needs: deploy-cms
+  #   name: Deploy WWW
+  #   runs-on: [self-hosted, 'codebuild']
+  #   environment: ${{github.ref == 'refs/heads/main' && 'prod' || 'dev'}}
+  #   permissions:
+  #     id-token: write
+  #     contents: read
+  #     deployments: write
+  #   steps:
 
-      - name: Checkout the repository
-        uses: actions/checkout@v4
+  #     - name: Checkout the repository
+  #       uses: actions/checkout@v4
 
-      - name: Get the branch name
-        id: get_branch
-        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
-        shell: bash
+  #     - name: Get the branch name
+  #       id: get_branch
+  #       run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+  #       shell: bash
 
-      - uses: chrnorm/deployment-action@v2
-        name: Create GitHub deployment for ${{github.job.environment.name}}
-        id: deployment
-        with:
-          token: '${{github.token}}'
-          environment: ${{github.job.environment.name}}
-          ref: ${{steps.get_branch.outputs.branch}}
+  #     - uses: chrnorm/deployment-action@v2
+  #       name: Create GitHub deployment for ${{github.job.environment.name}}
+  #       id: deployment
+  #       with:
+  #         token: '${{github.token}}'
+  #         environment: ${{github.job.environment.name}}
+  #         ref: ${{steps.get_branch.outputs.branch}}
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
+  #     - name: Set up Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18.x'
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        with:
-          version: 8
-          run_install: false
+  #     - uses: pnpm/action-setup@v2
+  #       name: Install pnpm
+  #       with:
+  #         version: 8
+  #         run_install: false
 
-      - name: Install dependencies
-        run: |
-          pnpm install
+  #     - name: Install dependencies
+  #       run: |
+  #         pnpm install
       
-      - name: Add .env file in www
-        run: |
-          cd apps/www
-          touch .env
-          echo NEXT_PUBLIC_HUBSPOT_API=$NEXT_PUBLIC_HUBSPOT_API >> .env
-          echo STRAPI_API_URL=$STRAPI_API_URL >> .env
-          echo STRAPI_API_TOKEN=$STRAPI_API_TOKEN >> .env
-          cat .env
+  #     - name: Add .env file in www
+  #       run: |
+  #         cd apps/www
+  #         touch .env
+  #         echo NEXT_PUBLIC_HUBSPOT_API=$NEXT_PUBLIC_HUBSPOT_API >> .env
+  #         echo STRAPI_API_URL=$STRAPI_API_URL >> .env
+  #         echo STRAPI_API_TOKEN=$STRAPI_API_TOKEN >> .env
+  #         cat .env
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: arn:aws:iam::${{vars.CDK_DEFAULT_ACCOUNT}}:role/github-role
-          aws-region: ${{vars.CDK_DEFAULT_REGION}}
+  #     - name: Configure AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v2
+  #       with:
+  #         role-to-assume: arn:aws:iam::${{vars.CDK_DEFAULT_ACCOUNT}}:role/github-role
+  #         aws-region: ${{vars.CDK_DEFAULT_REGION}}
 
-      - name: Deploying
-        run: |
-          cd infrastructures/www && npx cdk deploy NextjsStack --require-approval never
+  #     - name: Deploying
+  #       run: |
+  #         cd infrastructures/www && npx cdk deploy NextjsStack --require-approval never
 
-      - name: Update deployment status (success)
-        if: success()
-        uses: chrnorm/deployment-status@v2
-        with:
-          token: '${{github.token}}'
-          state: 'success'
-          deployment-id: ${{steps.deployment.outputs.deployment_id}}
+  #     - name: Update deployment status (success)
+  #       if: success()
+  #       uses: chrnorm/deployment-status@v2
+  #       with:
+  #         token: '${{github.token}}'
+  #         state: 'success'
+  #         deployment-id: ${{steps.deployment.outputs.deployment_id}}
 
-      - name: Update deployment status (failure)
-        if: failure()
-        uses: chrnorm/deployment-status@v2
-        with:
-          token: '${{github.token}}'
-          state: 'failure'
-          deployment-id: ${{steps.deployment.outputs.deployment_id}}
+  #     - name: Update deployment status (failure)
+  #       if: failure()
+  #       uses: chrnorm/deployment-status@v2
+  #       with:
+  #         token: '${{github.token}}'
+  #         state: 'failure'
+  #         deployment-id: ${{steps.deployment.outputs.deployment_id}}
