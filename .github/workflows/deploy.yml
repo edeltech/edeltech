@@ -55,9 +55,7 @@ jobs:
         name: Install pnpm
         with:
           version: 8
-      
-      - name: Install dependencies
-        run: pnpm install -w apps/cms apps/cms/src/plugins/revalidate-website
+          run_install: true
       
       - name: Add .env file in cms
         run: |
