@@ -612,19 +612,6 @@ export interface CtaSectionsJoinOurTeam extends Schema.Component {
   }
 }
 
-export interface CtaButton extends Schema.Component {
-  collectionName: 'components_cta_buttons'
-  info: {
-    displayName: 'button'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    link: Attribute.String & Attribute.Required
-    tone: Attribute.Enumeration<['primary', 'secondary']> & Attribute.Required & Attribute.DefaultTo<'primary'>
-  }
-}
-
 export interface ContentSectionIntroductionWithLogo extends Schema.Component {
   collectionName: 'components_content_section_introduction_with_logos'
   info: {
@@ -671,6 +658,19 @@ export interface ContentSectionContentAlternatePositionWithImageList extends Sch
   }
 }
 
+export interface CtaButton extends Schema.Component {
+  collectionName: 'components_cta_buttons'
+  info: {
+    displayName: 'button'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    link: Attribute.String & Attribute.Required
+    tone: Attribute.Enumeration<['primary', 'secondary']> & Attribute.Required & Attribute.DefaultTo<'primary'>
+  }
+}
+
 export interface ContactSectionsContact extends Schema.Component {
   collectionName: 'contacts'
   info: {
@@ -693,6 +693,45 @@ export interface CertificationsSectionsCertificationsBadgesWithTitle extends Sch
     title: Attribute.String & Attribute.Required
     horizontalBadgesImage: Attribute.Media<'images'> & Attribute.Required
     verticalBadgesImage: Attribute.Media<'images'> & Attribute.Required
+  }
+}
+
+export interface CaseStudiesSectionsCaseStudiesGridCards extends Schema.Component {
+  collectionName: 'case_studies_grid_cards'
+  info: {
+    displayName: 'case-studies-grid-cards'
+    description: ''
+  }
+  attributes: {
+    case_studies: Attribute.Relation<
+      'case-studies-sections.case-studies-grid-cards',
+      'oneToMany',
+      'api::case-study.case-study'
+    >
+  }
+}
+
+export interface BlogSectionsBlogThreeColumn extends Schema.Component {
+  collectionName: 'components_blog_sections_blog_three_columns'
+  info: {
+    displayName: 'blog-three-column'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    articles: Attribute.Relation<'blog-sections.blog-three-column', 'oneToMany', 'api::article.article'>
+    subtitle: Attribute.Text & Attribute.Required
+  }
+}
+
+export interface BlogSectionsBlogMasonry extends Schema.Component {
+  collectionName: 'components_blog_sections_blog_masonries'
+  info: {
+    displayName: 'blog-masonry'
+    description: ''
+  }
+  attributes: {
+    articles: Attribute.Relation<'blog-sections.blog-masonry', 'oneToMany', 'api::article.article'>
   }
 }
 
@@ -741,30 +780,6 @@ export interface CardsCardText extends Schema.Component {
   }
 }
 
-export interface BlogSectionsBlogThreeColumn extends Schema.Component {
-  collectionName: 'components_blog_sections_blog_three_columns'
-  info: {
-    displayName: 'blog-three-column'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    articles: Attribute.Relation<'blog-sections.blog-three-column', 'oneToMany', 'api::article.article'>
-    subtitle: Attribute.Text & Attribute.Required
-  }
-}
-
-export interface BlogSectionsBlogMasonry extends Schema.Component {
-  collectionName: 'components_blog_sections_blog_masonries'
-  info: {
-    displayName: 'blog-masonry'
-    description: ''
-  }
-  attributes: {
-    articles: Attribute.Relation<'blog-sections.blog-masonry', 'oneToMany', 'api::article.article'>
-  }
-}
-
 export interface BenefitBenefit extends Schema.Component {
   collectionName: 'components_benefit_benefits'
   info: {
@@ -802,18 +817,19 @@ declare module '@strapi/types' {
       'diagram-sections.diagram-full-width': DiagramSectionsDiagramFullWidth
       'customer-sections.customer-logo-simple-with-title': CustomerSectionsCustomerLogoSimpleWithTitle
       'cta-sections.join-our-team': CtaSectionsJoinOurTeam
-      'cta.button': CtaButton
       'content-section.introduction-with-logo': ContentSectionIntroductionWithLogo
       'content-section.content-two-column': ContentSectionContentTwoColumn
       'content-section.content-markdown': ContentSectionContentMarkdown
       'content-section.content-alternate-position-with-image-list': ContentSectionContentAlternatePositionWithImageList
+      'cta.button': CtaButton
       'contact-sections.contact': ContactSectionsContact
       'certifications-sections.certifications-badges-with-title': CertificationsSectionsCertificationsBadgesWithTitle
+      'case-studies-sections.case-studies-grid-cards': CaseStudiesSectionsCaseStudiesGridCards
+      'blog-sections.blog-three-column': BlogSectionsBlogThreeColumn
+      'blog-sections.blog-masonry': BlogSectionsBlogMasonry
       'cards.content-alternate-position-with-image-item': CardsContentAlternatePositionWithImageItem
       'cards.card-with-icon': CardsCardWithIcon
       'cards.card-text': CardsCardText
-      'blog-sections.blog-three-column': BlogSectionsBlogThreeColumn
-      'blog-sections.blog-masonry': BlogSectionsBlogMasonry
       'benefit.benefit': BenefitBenefit
     }
   }
