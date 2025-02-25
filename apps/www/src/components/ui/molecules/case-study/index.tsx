@@ -1,3 +1,5 @@
+'use client'
+
 import {ImageProps} from '@/models/image.model'
 import {cn} from '@/utils/toolbox'
 import {useState} from 'react'
@@ -11,8 +13,6 @@ export type CaseStudyProps = {
 
 export default function CaseStudy({title, content, image}: CaseStudyProps) {
   const [isLoaded, setIsLoaded] = useState(false)
-
-  console.log('CaseStudy', {title, content, image})
 
   return (
     <div className='w-full h-full'>
