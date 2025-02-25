@@ -3,7 +3,7 @@ import CaseStudyCard from '@/components/ui/molecules/cards/case-study'
 import ComponentLayout from '@/components/ui/atoms/component-layout'
 
 export type CaseStudiesGridCardsProps = {
-  caseStudies: CaseStudy[]
+  caseStudies: Array<CaseStudy>
 }
 
 export default function CaseStudiesGridCards({caseStudies}: CaseStudiesGridCardsProps) {

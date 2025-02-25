@@ -15,8 +15,8 @@ export default function CaseStudy({title, content, image}: CaseStudyProps) {
   const [isLoaded, setIsLoaded] = useState(false)
 
   return (
-    <div className='w-full h-full'>
-      <h1>{title}</h1>
+    <div className='w-full h-96 bg-red-400'>
+      <h1 className='text-4xl font-bold text-red-400'>{title} TEST</h1>
       <p>{content}</p>
       <Image
         src={image.url}
