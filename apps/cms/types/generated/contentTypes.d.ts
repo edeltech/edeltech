@@ -805,6 +805,87 @@ export interface ApiBlogPageBlogPage extends Schema.SingleType {
   }
 }
 
+export interface ApiCaseStudiesPageCaseStudiesPage extends Schema.SingleType {
+  collectionName: 'case_studies_pages'
+  info: {
+    singularName: 'case-studies-page'
+    pluralName: 'case-studies-pages'
+    displayName: '05 - Case Studies Page'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    seo: Attribute.Component<'seo.seo'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+        translate: {
+          translate: 'translate'
+        }
+      }>
+    body: Attribute.DynamicZone<
+      ['hero-sections.hero-with-gradient', 'case-studies-sections.case-studies-grid-cards', 'contact-sections.contact']
+    > &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+        translate: {
+          translate: 'translate'
+        }
+      }>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::case-studies-page.case-studies-page', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::case-studies-page.case-studies-page', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    localizations: Attribute.Relation<
+      'api::case-studies-page.case-studies-page',
+      'oneToMany',
+      'api::case-studies-page.case-studies-page'
+    >
+    locale: Attribute.String
+  }
+}
+
+export interface ApiCaseStudyCaseStudy extends Schema.CollectionType {
+  collectionName: 'case_studies'
+  info: {
+    singularName: 'case-study'
+    pluralName: 'case-studies'
+    displayName: 'Case Study'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    slug: Attribute.String & Attribute.Required
+    title: Attribute.String & Attribute.Required
+    description: Attribute.Text & Attribute.Required
+    image: Attribute.Media<'images'> & Attribute.Required
+    annexeParagraph: Attribute.RichText
+    content: Attribute.RichText & Attribute.Required
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::case-study.case-study', 'oneToOne', 'admin::user'> & Attribute.Private
+    updatedBy: Attribute.Relation<'api::case-study.case-study', 'oneToOne', 'admin::user'> & Attribute.Private
+  }
+}
+
 export interface ApiCustomerCustomer extends Schema.CollectionType {
   collectionName: 'customers'
   info: {
@@ -1041,12 +1122,12 @@ export interface ApiPartnerPartner extends Schema.CollectionType {
   }
 }
 
-export interface ApiPartnerPagePartnerPage extends Schema.SingleType {
-  collectionName: 'partner_pages'
+export interface ApiPartnersPagePartnersPage extends Schema.SingleType {
+  collectionName: 'partners_pages'
   info: {
-    singularName: 'partner-page'
-    pluralName: 'partner-pages'
-    displayName: '04 - Partner Page'
+    singularName: 'partners-page'
+    pluralName: 'partners-pages'
+    displayName: '04 - Partners Page'
     description: ''
   }
   options: {
@@ -1090,9 +1171,13 @@ export interface ApiPartnerPagePartnerPage extends Schema.SingleType {
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
-    createdBy: Attribute.Relation<'api::partner-page.partner-page', 'oneToOne', 'admin::user'> & Attribute.Private
-    updatedBy: Attribute.Relation<'api::partner-page.partner-page', 'oneToOne', 'admin::user'> & Attribute.Private
-    localizations: Attribute.Relation<'api::partner-page.partner-page', 'oneToMany', 'api::partner-page.partner-page'>
+    createdBy: Attribute.Relation<'api::partners-page.partners-page', 'oneToOne', 'admin::user'> & Attribute.Private
+    updatedBy: Attribute.Relation<'api::partners-page.partners-page', 'oneToOne', 'admin::user'> & Attribute.Private
+    localizations: Attribute.Relation<
+      'api::partners-page.partners-page',
+      'oneToMany',
+      'api::partners-page.partners-page'
+    >
     locale: Attribute.String
   }
 }
@@ -1503,12 +1588,14 @@ declare module '@strapi/types' {
       'api::about-us-page.about-us-page': ApiAboutUsPageAboutUsPage
       'api::article.article': ApiArticleArticle
       'api::blog-page.blog-page': ApiBlogPageBlogPage
+      'api::case-studies-page.case-studies-page': ApiCaseStudiesPageCaseStudiesPage
+      'api::case-study.case-study': ApiCaseStudyCaseStudy
       'api::customer.customer': ApiCustomerCustomer
       'api::footer.footer': ApiFooterFooter
       'api::home-page.home-page': ApiHomePageHomePage
       'api::location.location': ApiLocationLocation
       'api::partner.partner': ApiPartnerPartner
-      'api::partner-page.partner-page': ApiPartnerPagePartnerPage
+      'api::partners-page.partners-page': ApiPartnersPagePartnersPage
       'api::service.service': ApiServiceService
       'api::solution.solution': ApiSolutionSolution
       'api::tag.tag': ApiTagTag

@@ -11,7 +11,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         with:
-          version: 8
+          version: 9
           run_install: true
       - name: Run linter
         run: pnpm run lint
@@ -23,7 +23,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         with:
-          version: 8
+          version: 9
           run_install: true
       - name: Build cms
         run: pnpm run build
@@ -43,7 +43,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         with:
-          version: 8
+          version: 9
           run_install: false
       - name: Install dependencies
         run: pnpm install -w www

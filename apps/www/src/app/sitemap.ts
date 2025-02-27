@@ -15,6 +15,16 @@ async function getArticlePaths() {
     .flat(1)
 }
 
+async function getCaseStudiePaths() {
+  return (await getList('case-studies'))
+    .map((caseStudy) => {
+      return locales.map((locale) => {
+        return `${locale}/case-studies/${caseStudy.slug}`
+      })
+    })
+    .flat(1)
+}
+
 async function getSolutionsPaths() {
   return (await getList('solutions')).map((solution) => {
     return `${solution.locale}/solutions/${solution.slug}`
@@ -42,7 +52,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...getStaticPaths(),
     ...(await getArticlePaths()),
     ...(await getSolutionsPaths()),
-    ...(await getServicesPaths())
+    ...(await getServicesPaths()),
+    ...(await getCaseStudiePaths())
   ]
 
   return paths.map((path) => ({

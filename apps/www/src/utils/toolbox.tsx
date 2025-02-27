@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {ClassValue, clsx} from 'clsx'
-import {CloudArrowDownIcon} from '@heroicons/react/24/outline'
 import {Dictionary} from '@/models/dictionary.model'
 import {HsformsPayload, HsformsPayloadItem, contactUsFormData} from '@/models/contact-us-form-data.model'
 import {NavigationItem} from '@/models/navigation-item.model'
@@ -206,6 +205,7 @@ export function getNavigationLinks(dico: Dictionary): Array<NavigationItem> {
       title: dico.company,
       links: [
         {title: dico.aboutUs, link: '/about-us', icon: {name: 'BuildingOfficeIcon', type: 'outline'}},
+        {title: dico.caseStudies, link: '/case-studies', icon: {name: 'MagnifyingGlassIcon', type: 'outline'}},
         {title: dico.blog, link: '/blog', icon: {name: 'BookOpenIcon', type: 'outline'}}
       ],
       dropdownWidth: 'w-40'

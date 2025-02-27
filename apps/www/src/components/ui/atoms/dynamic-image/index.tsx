@@ -12,6 +12,8 @@ export type DynamicImageProps = Partial<ImageProps> & {
 export default function DynamicImage(props: DynamicImageProps) {
   const [dimensions, setDimensions] = React.useState({width: 0, height: 0})
 
+  console.log('props className', props.className)
+
   useEffect(() => {
     if (typeof props.src === 'string') {
       getImageSize(props.src).then((size) => {
@@ -28,7 +30,7 @@ export default function DynamicImage(props: DynamicImageProps) {
         height={dimensions.height}
         src={props.src as string}
         {...props}
-        className={cn(props.className, dimensions.height > (props.maxHeight || 418) ? 'md:h-[418px] w-auto' : '')}
+        className={cn(props.className, dimensions.height > (props.maxHeight || 418) ? `md:h-[418px] w-auto` : '')}
       />
     </>
   )

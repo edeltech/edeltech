@@ -6,6 +6,7 @@ import {teamMemberFactory} from './team-member.factory'
 
 export function articleFactory(): Article {
   const title = faker.lorem.words(3)
+
   return {
     id: faker.number.int(),
     title,

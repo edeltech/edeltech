@@ -22,6 +22,7 @@ export type FooterProps = {
 export default function Footer(props: FooterProps) {
   const companyLinks: Array<LinkProps> = [
     {title: props.dictionary.aboutUs, link: '/about-us'},
+    {title: props.dictionary.caseStudies, link: '/case-studies'},
     {title: props.dictionary.blog, link: '/blog'}
   ]
 

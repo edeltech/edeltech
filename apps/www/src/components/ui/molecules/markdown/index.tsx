@@ -13,9 +13,10 @@ import React from 'react'
 export type MarkdownViewerProps = {
   content: string
   className?: string
+  imageClassName?: string
 }
 
-export default function MarkdownViewer({content, className}: MarkdownViewerProps) {
+export default function MarkdownViewer({content, className, imageClassName}: MarkdownViewerProps) {
   return (
     <div className='flex justify-center w-full'>
       <div
@@ -29,6 +30,17 @@ export default function MarkdownViewer({content, className}: MarkdownViewerProps
             createElement(type, props: React.HTMLProps<HTMLDivElement>, children) {
               const element = Array.isArray(children) ? children[0] : children
               props.className = cn(props.className, element?.type === 'img' ? 'bg-white' : '')
+              if (type === 'h1' || type === 'h2') {
+                props.className = cn(
+                  props.className,
+                  'w-fit font-extrabold tracking-tight text-transparent bg-clip-text bg-text-gradient-gray'
+                )
+              } else if (type === 'h3' || type === 'h4' || type === 'h5' || type === 'h6') {
+                props.className = cn(
+                  props.className,
+                  'w-fit font-semibold tracking-tight text-transparent bg-clip-text bg-text-gradient-gray'
+                )
+              }
               if (type === 'pre') {
                 const language = (children as React.ReactElement).props.className?.replace('lang-', '')
                 return (
@@ -55,12 +67,15 @@ export default function MarkdownViewer({content, className}: MarkdownViewerProps
               } else if (element?.type === 'img') {
                 return (
                   <div
-                    className='flex flex-col items-center justify-center'
+                    className={cn(
+                      'flex flex-col items-center justify-center',
+                      imageClassName ? 'my-16 overflow-hidden rounded-3xl' : ''
+                    )}
                     key={element.props['src']}
                   >
                     <DynamicImage
                       src={element.props['src']}
-                      className='!mb-0 bg-white'
+                      className={cn('!mb-0 bg-white', imageClassName)}
                     />
                   </div>
                 )

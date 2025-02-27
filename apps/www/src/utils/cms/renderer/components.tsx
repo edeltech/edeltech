@@ -4,6 +4,8 @@ import {draftMode} from 'next/headers'
 import ArticleContentSection from '@/components/ui/molecules/article/content-section'
 import BlogMasonry from '@/components/ui/organisms/blog-sections/blog-masonry'
 import BlogThreeColumn from '@/components/ui/organisms/blog-sections/blog-three-column'
+import CaseStudiesGridCards from '@/components/ui/organisms/case-studies-sections/case-studies-grid-cards'
+import CaseStudyContentSection from '@/components/ui/molecules/case-study/content-section'
 import CertificationsBadgesWithTitle from '@/components/ui/organisms/certifications-sections/certifications-badges-with-title'
 import Contact from '@/components/ui/organisms/contact-sections/contact'
 import ContentAlternatePositionWithImageItem from '@/components/ui/organisms/content-sections/content-alternate-position-with-image-item'
@@ -74,7 +76,9 @@ export const componentBlueprints: ComponentBlueprints = {
   'content-alternate-position-with-image-list': ContentAlternatePositionWithImageList,
   'content-alternate-position-with-image-item': ContentAlternatePositionWithImageItem,
   'certifications-badges-with-title': CertificationsBadgesWithTitle,
-  'map-with-title': MapWithTitle
+  'map-with-title': MapWithTitle,
+  'case-studies-grid-cards': CaseStudiesGridCards,
+  'case-study-content': CaseStudyContentSection
 }
 export type ComponentBlueprint = {
   component: keyof ComponentBlueprints
